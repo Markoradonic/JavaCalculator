@@ -17,38 +17,34 @@ import javax.swing.border.Border;
  
 public class Calculator implements ActionListener{
      
-     JFrame frame = new JFrame();
-     JPanel panel = new JPanel( );
-     JTextArea txt = new JTextArea( 2, 9 );
+    JFrame frame = new JFrame();
+    JPanel panel = new JPanel( );
+    JTextArea txt = new JTextArea(2, 9);
  
-   
-  
-   
-     
-    JButton button1= new JButton( );
-    JButton button2= new JButton( );
-    JButton button3= new JButton( );
-    JButton button4= new JButton( );
-    JButton button5= new JButton( );
-    JButton button6= new JButton( );
-    JButton button7= new JButton( );
-    JButton button8= new JButton( );
-    JButton buttondot= new JButton( );
-    JButton button9= new JButton( );
-    JButton button0= new JButton( );
-    JButton buttonmin= new JButton( );
-    JButton buttonmul= new JButton( );
-    JButton buttonpw= new JButton( );
+    JButton button1= new JButton();
+    JButton button2= new JButton();
+    JButton button3= new JButton();
+    JButton button4= new JButton();
+    JButton button5= new JButton();
+    JButton button6= new JButton();
+    JButton button7= new JButton();
+    JButton button8= new JButton();
+    JButton buttondot= new JButton();
+    JButton button9= new JButton();
+    JButton button0= new JButton();
+    JButton buttonmin= new JButton();
+    JButton buttonmul= new JButton();
+    JButton buttonpw= new JButton();
     JButton buttondiv = new JButton();
-    JButton buttonadd= new JButton( );
-    JButton buttonequal= new JButton(  );
-    JButton buttonclear= new JButton(  );
+    JButton buttonadd= new JButton();
+    JButton buttonequal= new JButton();
+    JButton buttonclear= new JButton();
  
-     Double number1,number2,result;
-     int addc=0,multic=0, divc=0,subc=0, pw=0;
+    Double number1,number2,result;
+    int addc=0,multic=0, divc=0,subc=0, pw=0;
       
  
-     public Calculator(){
+    public Calculator(){
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setVisible(true);
          frame.setSize(340,420);
@@ -144,7 +140,9 @@ public class Calculator implements ActionListener{
          panel.add(buttonequal);
          panel.add(buttonclear);
           
-          
+      
+         // da bi program mogao da odreaguje na klik dugmeta mi za svako
+         // dugme moramo da dodamo action listener
          button1.addActionListener(this);
          button2.addActionListener(this);
          button3.addActionListener(this);
@@ -162,75 +160,71 @@ public class Calculator implements ActionListener{
          buttondiv.addActionListener(this);
          buttonequal.addActionListener(this);
          buttonclear.addActionListener(this);
-     } 
+    } 
  
       
-      
+      // funkcija koja se izvrsava svaki put kada se nesto klikne
     public void actionPerformed(ActionEvent e) {
           
+    	// Object source ce biti objekat koji u sebi ima informaciju koje dugme je stisnuto
+    	// pomocu funkcije getSource mi cemo tacno dobiti klinkuti objekat oli ti kliknuto dugme
         Object source = e.getSource();
          
+        
+        // Svaki od ovih ifova je provera kako bi smo saznali sto je kliknnuto
+        // U zavisnosti sta je kliknuto radimo odredjenu akcju.
         if(source== buttonclear){
                number1 = 0.0;
                number2 = 0.0;
                txt.setText("");
-              
-                 }           
-         
+        }              
       
         if(source == button1){
-            txt.append("1");
-             
-             
+            txt.append("1");   
         }
+        
         if(source == button2){
             txt.append("2");
              
              
-        }       if(source == button3){
+        }       
+        
+        if(source == button3){
             txt.append("3");
-             
-             
+                     
         }
         if(source == button4){
             txt.append("4");
-             
-             
+                        
         }
         if(source == button5){
             txt.append("5");
-             
-             
+                         
         }
         if(source == button6){
-            txt.append("6");
-             
-             
+            txt.append("6");            
         }
+        
         if(source == button7){
-            txt.append("7");
-             
-             
+            txt.append("7");    
         }
+        
         if(source == button8){
-            txt.append("8");
-             
-             
+            txt.append("8"); 
         }
+        
         if(source == button9){
             txt.append("9");
-             
-             
         }
+        
         if(source == button0){
-            txt.append("0");
-             
-             
+            txt.append("0");     
         }
+        
         if(source == buttondot){
             txt.append(".");
-         
         }
+        
         if(source == buttonadd){
             number1 =number_reader();
             txt.setText("");
@@ -239,6 +233,7 @@ public class Calculator implements ActionListener{
             divc = 0;
             subc =0 ;
         }
+        
         if(source == buttonmin){
             number1 =number_reader();
             txt.setText("");
@@ -289,41 +284,23 @@ public class Calculator implements ActionListener{
           }
             if(multic>0){
                   result = number1 * number2;
-                  txt.setText(Double.toString(result));
-                   
+                  txt.setText(Double.toString(result));       
           }
             if(divc>0){
                   result = number1 / number2;
                   txt.setText(Double.toString(result));
                    
           }
-            
-            if(pw>0){
-                result = mathPow(result);
-                txt.setText(Double.toString(result));
-                 
-        }
-             
-             
-          }
-         
-      
-          } 
-              
-private Double mathPow(Double result2) {
-		
-		return null;
+   
+       } 
+    } 
+
+	
+	public double number_reader(){
+	            Double num1;
+	            String s;
+	            s = txt.getText();
+	            num1= Double.valueOf(s);
+	            return num1;
 	}
-
-
-
-public double number_reader(){
-            Double num1;
-            String s;
-            s = txt.getText();
-            num1= Double.valueOf(s);
-            return num1;
-     
-         }
- 
 }
